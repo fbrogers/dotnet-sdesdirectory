@@ -1,0 +1,89 @@
+﻿@using SDES___Office_Directory.Code
+@model IEnumerable<SDES___Office_Directory.Models.office>
+
+@{
+    ViewBag.Title = "Directory Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section links{
+    <ul class="content-main-links">
+        <li>@Html.ActionLink("JSON Feed", "Index", "feed")</li>
+    </ul>
+}
+
+<div class="sidebar-right">
+    <div class="event-title">Navigation</div>
+    <div class="events">
+        <ul class="side">
+            <li>
+                <ul>
+                @foreach(var item in Model)
+                {
+                    <li><a href="#@item.officeAcronym">@item.officeName</a></li>
+                }                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="left">
+@foreach (var item in Model) {
+    
+    <h2 class="bullets office-title" id="@item.officeAcronym">@item.officeName</h2>
+    
+    <h3>Basic Information</h3>
+    <p>
+        Acronym: @item.officeAcronym.ToUpper()<br />
+        @item.staffs.First().staffTitle: @item.staffs.First().staffName<br />
+        Phone: @item.officePhone<br />
+        Fax: @item.officeFax<br />
+        Email: <a href="mailto:@item.officeEmail">@item.officeEmail</a><br />
+        Location: <a href="http://map.ucf.edu/?show=@item.officeLocationBuildingNum">@item.officeLocationBuilding @item.officeLocationRoomNum</a><br />
+        P.O. Box: @item.officeBox<br />
+        Functional Group: @item.group.groupName
+    </p>
+    
+    <h3>Hours of Operation</h3>
+    <ul>
+        @foreach(var day in item.hours)
+        {
+            if (day.hoursOpen.ToString() == string.Empty || day.hoursClose.ToString() == string.Empty)
+            {
+                <li>@Init.ConvertDaytoText(day.hoursDay): Closed</li>
+            }
+            else
+            {
+                <li>
+                    @Init.ConvertDaytoText(day.hoursDay): 
+                    @DateTime.ParseExact(day.hoursOpen.ToString(), "HH:mm:ss", null).ToString("h:mm tt") &ndash;
+                    @DateTime.ParseExact(day.hoursClose.ToString(), "HH:mm:ss", null).ToString("h:mm tt")
+                </li>
+            }
+
+        }
+    </ul>
+    
+    <h3>Public Websites</h3>
+    <ul>
+        @foreach(var site in item.websites)
+        {
+            <li><a href="@site.websiteUri" class="external">@site.websiteName</a></li>
+        }
+    </ul>
+    
+    if (item.socials.Any())
+    {
+    <h3>Social Networking Presences</h3>
+    <ul>
+        @foreach(var network in item.socials)
+        {
+            <li><a href="@network.socialUri" class="external">@network.socialName</a></li>
+        }
+    </ul>
+    }
+    
+    <div class="hr"></div>
+}
+</div>
