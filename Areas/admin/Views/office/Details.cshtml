@@ -1,0 +1,84 @@
+﻿@model SDES___Office_Directory.Models.office
+
+@{
+    ViewBag.Title = Model.officeAcronym.ToUpper();
+    ViewBag.Office = Model.officeId;
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section links{
+    <ul class="content-main-links">
+        <li>@Html.ActionLink("Edit", "Edit", new { id = Model.officeId })</li>
+        <li>@Html.ActionLink("Back to List", "Index")</li>
+    </ul>
+}
+
+<div class="global-col2-1">
+    <h3>Information</h3>
+    <table class="grid">
+        <tr>
+            <th scope="col">Field</th>
+            <th scope="col">Data</th>
+        </tr>
+        <tr>
+            <th scope="row">Name</th>
+            <td>@Model.officeName</td>
+        </tr>
+        <tr>
+            <th scope="row">Acronym</th>
+            <td>@Model.officeAcronym.ToUpper()</td>
+        </tr>
+        <tr>
+            <th scope="row">Phone</th>
+            <td>@Model.officePhone</td>
+        </tr>
+        <tr>
+            <th scope="row">Fax</th>
+            <td>@Model.officeFax</td>
+        </tr>
+        <tr>
+            <th scope="row">Email</th>
+            <td>@Model.officeEmail</td>
+        </tr>
+        <tr>
+            <th scope="row">P.O. Box</th>
+            <td>@Model.officeBox</td>
+        </tr>
+        <tr>
+            <th scope="row">Building</th>
+            <td>@Model.officeLocationBuilding</td>
+        </tr>
+        <tr>
+            <th scope="row">Map ID</th>
+            <td>@Model.officeLocationBuildingNum</td>
+        </tr>
+        <tr>
+            <th scope="row">Room</th>
+            <td>@Model.officeLocationRoomNum</td>
+        </tr>
+        <tr>
+            <th scope="row">Functional Group</th>
+            <td>@Model.group.groupName</td>
+        </tr>
+        <tr>
+            <th scope="row">Public Services?</th>
+            <td>@Model.offersPublicServices</td>
+        </tr>
+    </table>
+    
+    <div class="hr-clear"></div>
+
+    @Html.Partial("_Social", Model.socials.OrderBy(x => x.socialName))
+</div>
+<div class="global-col2-2">
+    @Html.Partial("_Hours", Model.hours.OrderBy(x => x.hoursDay))
+
+    <div class="hr-clear"></div>
+
+    @Html.Partial("_Websites", Model.websites.OrderBy(x => x.websiteOrder))
+    
+    <div class="hr-clear"></div>
+
+    @Html.Partial("_Staff", Model.staffs.OrderBy(x => x.staffOrder))
+</div>
+<div class="hr-clear"></div>

@@ -1,0 +1,26 @@
+﻿@model SDES___Office_Directory.Models.group
+
+@{
+    ViewBag.Title = "Edit Group";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "fieldset"})) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        @Html.HiddenFor(model => model.groupId)
+
+        <div class="shift-right">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.groupName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.groupName)
+                @Html.ValidationMessageFor(model => model.groupName)
+            </div>
+        </div>
+    </fieldset>
+    <div class="submitbox">
+        <input type="submit" value="@ViewBag.Title" />
+    </div>
+}

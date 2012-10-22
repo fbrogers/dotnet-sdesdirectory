@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SDES___Office_Directory.Models.group>
+
+@{
+    ViewBag.Title = "Functional Groups";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section links{
+    <ul class="content-main-links">
+        <li>@Html.ActionLink("Create New Group", "Create")</li>
+    </ul>
+}
+
+<table class="grid">
+    <tr>
+        <th></th>
+        <th>
+            Functional Group Name
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.groupId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.groupId })
+        </td>
+        <td>
+            @item.groupName
+        </td>
+    </tr>
+}
+
+</table>
+

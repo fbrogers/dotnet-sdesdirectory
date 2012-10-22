@@ -1,0 +1,115 @@
+﻿@model SDES___Office_Directory.Models.office
+
+@{
+    ViewBag.Title = "Edit an Office";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section links{
+    <ul class="content-main-links">
+        <li>@Html.ActionLink("Back to Index", "Index")</li>
+    </ul>
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "fieldset" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>office</legend>
+        <div class="space-left"></div>
+        <div class="shift-right">
+            @Html.HiddenFor(model => model.officeId)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.groupId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("groupId", (List<SelectListItem>)ViewBag.groups, string.Empty, Model.groupId)
+                @Html.ValidationMessageFor(model => model.groupId)
+            </div>  
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officeName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.officeName)
+                @Html.ValidationMessageFor(model => model.officeName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officeAcronym)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.officeAcronym)
+                @Html.ValidationMessageFor(model => model.officeAcronym)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officePhone)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.officePhone)
+                @Html.ValidationMessageFor(model => model.officePhone)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officeFax)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.officeFax)
+                @Html.ValidationMessageFor(model => model.officeFax)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officeEmail)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.officeEmail)
+                @Html.ValidationMessageFor(model => model.officeEmail)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officeBox)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.officeBox)
+                @Html.ValidationMessageFor(model => model.officeBox)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officeLocationBuilding)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.officeLocationBuilding)
+                @Html.ValidationMessageFor(model => model.officeLocationBuilding)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officeLocationBuildingNum)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.officeLocationBuildingNum)
+                @Html.ValidationMessageFor(model => model.officeLocationBuildingNum)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officeLocationRoomNum)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.officeLocationRoomNum)
+                @Html.ValidationMessageFor(model => model.officeLocationRoomNum)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.offersPublicServices)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.offersPublicServices)
+                @Html.ValidationMessageFor(model => model.offersPublicServices)
+            </div>
+        </div>
+    </fieldset>
+    <div class="submitbox">
+        <input type="submit" value="@ViewBag.Title" />
+    </div>
+}

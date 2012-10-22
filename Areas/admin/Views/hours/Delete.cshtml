@@ -1,0 +1,26 @@
+﻿@using SDES___Office_Directory.Code
+@model SDES___Office_Directory.Models.hour
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<p class="error">@ViewBag.ErrorMessage</p>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div class="message">
+    <p>
+        Office: @Model.office.officeName<br/>
+        Hours: @Init.ConvertDaytoText(Model.hoursDay)
+    </p>
+</div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "fieldset" }))
+{
+    <div class="submitbox">
+        <input type="submit" value="Delete" />
+    </div>
+}
+

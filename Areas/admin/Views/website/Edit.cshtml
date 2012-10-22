@@ -1,0 +1,69 @@
+﻿@model SDES___Office_Directory.Models.website
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section links{
+    <ul class="content-main-links">
+        <li>@Html.ActionLink("Back to Index", "Index")</li>
+    </ul>
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "fieldset" })) {
+    
+    <fieldset>
+        <div class="space-left">
+            @Html.ValidationSummary(true)
+        </div>
+        <div class="shift-right">
+
+            @Html.HiddenFor(model => model.websiteId)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.officeId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("officeId", (List<SelectListItem>)ViewBag.offices, string.Empty, Model.officeId)
+                @Html.ValidationMessageFor(model => model.officeId)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.websiteName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.websiteName)
+                @Html.ValidationMessageFor(model => model.websiteName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.websiteUri)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.websiteUri)
+                @Html.ValidationMessageFor(model => model.websiteUri)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.websiteCal)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.websiteCal)
+                @Html.ValidationMessageFor(model => model.websiteCal)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.websiteOrder)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.websiteOrder)
+                @Html.ValidationMessageFor(model => model.websiteOrder)
+            </div>
+        </div>
+    </fieldset>
+    
+    <div class="submitbox">
+        <input type="submit" value="@ViewBag.Title" />
+    </div>
+}

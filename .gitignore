@@ -4,3 +4,41 @@ obj
 
 # mstest test results
 TestResults
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+.builds
+
+# ReSharper is a .NET coding add-in
+_ReSharper*
+
+# Publish Web Output
+*.Publish.xml
+
+# Hide the Real Web.Config
+*.config

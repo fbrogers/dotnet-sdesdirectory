@@ -1,0 +1,45 @@
+﻿@using SDES___Office_Directory.Code
+@model SDES___Office_Directory.Models.hour
+
+@{
+    ViewBag.Title = "Edit: "+Init.ConvertDaytoText(Model.hoursDay);
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section links{
+    <ul class="content-main-links">
+        <li>@Html.ActionLink("Back to Office", "Details", "office", new { id = Model.officeId }, null)</li>
+    </ul>
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "fieldset" })) {
+    
+    <fieldset>
+        <div class="space-left">
+            @Html.HiddenFor(model => model.hoursId)
+            @Html.HiddenFor(model => model.officeId)
+            @Html.HiddenFor(model => model.hoursDay)
+            @Html.ValidationSummary(true)
+        </div>
+        <div class="shift-right">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.hoursOpen)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.hoursOpen)
+                @Html.ValidationMessageFor(model => model.hoursOpen)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.hoursClose)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.hoursClose)
+                @Html.ValidationMessageFor(model => model.hoursClose)
+            </div>
+        </div>
+    </fieldset>
+    <div class="submitbox">
+        <input type="submit" value="@ViewBag.Title" />
+    </div>
+}

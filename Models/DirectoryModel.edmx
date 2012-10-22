@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DirectoryDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DirectoryDataModelStoreContainer">
+          <EntitySet Name="group" EntityType="DirectoryDataModel.Store.group" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="hours" EntityType="DirectoryDataModel.Store.hours" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="office" EntityType="DirectoryDataModel.Store.office" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="otherLocation" EntityType="DirectoryDataModel.Store.otherLocation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="social" EntityType="DirectoryDataModel.Store.social" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="staff" EntityType="DirectoryDataModel.Store.staff" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="DirectoryDataModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="website" EntityType="DirectoryDataModel.Store.website" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_hours_office" Association="DirectoryDataModel.Store.FK_hours_office">
+            <End Role="office" EntitySet="office" />
+            <End Role="hours" EntitySet="hours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_office_group" Association="DirectoryDataModel.Store.FK_office_group">
+            <End Role="group" EntitySet="group" />
+            <End Role="office" EntitySet="office" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otherLocation_office" Association="DirectoryDataModel.Store.FK_otherLocation_office">
+            <End Role="office" EntitySet="office" />
+            <End Role="otherLocation" EntitySet="otherLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_social_office" Association="DirectoryDataModel.Store.FK_social_office">
+            <End Role="office" EntitySet="office" />
+            <End Role="social" EntitySet="social" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staff_office" Association="DirectoryDataModel.Store.FK_staff_office">
+            <End Role="office" EntitySet="office" />
+            <End Role="staff" EntitySet="staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_website_office" Association="DirectoryDataModel.Store.FK_website_office">
+            <End Role="office" EntitySet="office" />
+            <End Role="website" EntitySet="website" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="groupId" />
+          </Key>
+          <Property Name="groupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="groupName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="hours">
+          <Key>
+            <PropertyRef Name="hoursId" />
+          </Key>
+          <Property Name="hoursId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="int" Nullable="false" />
+          <Property Name="hoursDay" Type="tinyint" Nullable="false" />
+          <Property Name="hoursOpen" Type="time" Precision="0" />
+          <Property Name="hoursClose" Type="time" Precision="0" />
+        </EntityType>
+        <EntityType Name="office">
+          <Key>
+            <PropertyRef Name="officeId" />
+          </Key>
+          <Property Name="officeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="groupId" Type="int" />
+          <Property Name="officeName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="officeAcronym" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="officePhone" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="officeFax" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="officeEmail" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="officeBox" Type="int" />
+          <Property Name="officeLocationBuilding" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="officeLocationBuildingNum" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="officeLocationRoomNum" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="offersPublicServices" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="otherLocation">
+          <Key>
+            <PropertyRef Name="otherLocationId" />
+          </Key>
+          <Property Name="otherLocationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="int" Nullable="false" />
+          <Property Name="otherLocationName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="otherLocationBuildingName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="otherLocationBuildingNum" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="otherLocationRoomNum" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="otherLocationPhone" Type="varchar" MaxLength="25" />
+          <Property Name="otherLocationFax" Type="varchar" MaxLength="25" />
+          <Property Name="otherLocationEmail" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="social">
+          <Key>
+            <PropertyRef Name="socialId" />
+          </Key>
+          <Property Name="socialId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="int" Nullable="false" />
+          <Property Name="socialName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="socialUri" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="socialHandle" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="int" Nullable="false" />
+          <Property Name="staffName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="staffTitle" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="staffOrder" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="website">
+          <Key>
+            <PropertyRef Name="websiteId" />
+          </Key>
+          <Property Name="websiteId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="int" Nullable="false" />
+          <Property Name="websiteName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="websiteUri" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="websiteCal" Type="int" />
+          <Property Name="websiteOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_hours_office">
+          <End Role="office" Type="DirectoryDataModel.Store.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="hours" Type="DirectoryDataModel.Store.hours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="hours">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_office_group">
+          <End Role="group" Type="DirectoryDataModel.Store.group" Multiplicity="0..1" />
+          <End Role="office" Type="DirectoryDataModel.Store.office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="groupId" />
+            </Principal>
+            <Dependent Role="office">
+              <PropertyRef Name="groupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otherLocation_office">
+          <End Role="office" Type="DirectoryDataModel.Store.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="otherLocation" Type="DirectoryDataModel.Store.otherLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="otherLocation">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_social_office">
+          <End Role="office" Type="DirectoryDataModel.Store.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="social" Type="DirectoryDataModel.Store.social" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="social">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staff_office">
+          <End Role="office" Type="DirectoryDataModel.Store.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="staff" Type="DirectoryDataModel.Store.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_website_office">
+          <End Role="office" Type="DirectoryDataModel.Store.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="website" Type="DirectoryDataModel.Store.website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="website">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DirectoryDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SDES_DirectoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="groups" EntityType="DirectoryDataModel.group" />
+          <EntitySet Name="hours" EntityType="DirectoryDataModel.hour" />
+          <EntitySet Name="offices" EntityType="DirectoryDataModel.office" />
+          <EntitySet Name="otherLocations" EntityType="DirectoryDataModel.otherLocation" />
+          <EntitySet Name="socials" EntityType="DirectoryDataModel.social" />
+          <EntitySet Name="staffs" EntityType="DirectoryDataModel.staff" />
+          <EntitySet Name="sysdiagrams" EntityType="DirectoryDataModel.sysdiagram" />
+          <EntitySet Name="websites" EntityType="DirectoryDataModel.website" />
+          <AssociationSet Name="FK_office_group" Association="DirectoryDataModel.FK_office_group">
+            <End Role="group" EntitySet="groups" />
+            <End Role="office" EntitySet="offices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hours_office" Association="DirectoryDataModel.FK_hours_office">
+            <End Role="office" EntitySet="offices" />
+            <End Role="hours" EntitySet="hours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_otherLocation_office" Association="DirectoryDataModel.FK_otherLocation_office">
+            <End Role="office" EntitySet="offices" />
+            <End Role="otherLocation" EntitySet="otherLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_social_office" Association="DirectoryDataModel.FK_social_office">
+            <End Role="office" EntitySet="offices" />
+            <End Role="social" EntitySet="socials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staff_office" Association="DirectoryDataModel.FK_staff_office">
+            <End Role="office" EntitySet="offices" />
+            <End Role="staff" EntitySet="staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_website_office" Association="DirectoryDataModel.FK_website_office">
+            <End Role="office" EntitySet="offices" />
+            <End Role="website" EntitySet="websites" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="groupId" />
+          </Key>
+          <Property Name="groupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="offices" Relationship="DirectoryDataModel.FK_office_group" FromRole="group" ToRole="office" />
+        </EntityType>
+        <EntityType Name="hour">
+          <Key>
+            <PropertyRef Name="hoursId" />
+          </Key>
+          <Property Name="hoursId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="Int32" Nullable="false" />
+          <Property Name="hoursDay" Type="Byte" Nullable="false" />
+          <Property Name="hoursOpen" Type="Time" Nullable="true" />
+          <Property Name="hoursClose" Type="Time" Nullable="true" />
+          <NavigationProperty Name="office" Relationship="DirectoryDataModel.FK_hours_office" FromRole="hours" ToRole="office" />
+        </EntityType>
+        <EntityType Name="office">
+          <Key>
+            <PropertyRef Name="officeId" />
+          </Key>
+          <Property Name="officeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupId" Type="Int32" />
+          <Property Name="officeName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="officeAcronym" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="officePhone" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="officeFax" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="officeEmail" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="officeBox" Type="Int32" />
+          <Property Name="officeLocationBuilding" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="officeLocationBuildingNum" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="officeLocationRoomNum" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="offersPublicServices" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="group" Relationship="DirectoryDataModel.FK_office_group" FromRole="office" ToRole="group" />
+          <NavigationProperty Name="hours" Relationship="DirectoryDataModel.FK_hours_office" FromRole="office" ToRole="hours" />
+          <NavigationProperty Name="otherLocations" Relationship="DirectoryDataModel.FK_otherLocation_office" FromRole="office" ToRole="otherLocation" />
+          <NavigationProperty Name="socials" Relationship="DirectoryDataModel.FK_social_office" FromRole="office" ToRole="social" />
+          <NavigationProperty Name="staffs" Relationship="DirectoryDataModel.FK_staff_office" FromRole="office" ToRole="staff" />
+          <NavigationProperty Name="websites" Relationship="DirectoryDataModel.FK_website_office" FromRole="office" ToRole="website" />
+        </EntityType>
+        <EntityType Name="otherLocation">
+          <Key>
+            <PropertyRef Name="otherLocationId" />
+          </Key>
+          <Property Name="otherLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="Int32" Nullable="false" />
+          <Property Name="otherLocationName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="otherLocationBuildingName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="otherLocationBuildingNum" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="otherLocationRoomNum" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="otherLocationPhone" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="otherLocationFax" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="otherLocationEmail" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="office" Relationship="DirectoryDataModel.FK_otherLocation_office" FromRole="otherLocation" ToRole="office" />
+        </EntityType>
+        <EntityType Name="social">
+          <Key>
+            <PropertyRef Name="socialId" />
+          </Key>
+          <Property Name="socialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="Int32" Nullable="false" />
+          <Property Name="socialName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="socialUri" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="socialHandle" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="office" Relationship="DirectoryDataModel.FK_social_office" FromRole="social" ToRole="office" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="Int32" Nullable="false" />
+          <Property Name="staffName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="staffTitle" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="staffOrder" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="office" Relationship="DirectoryDataModel.FK_staff_office" FromRole="staff" ToRole="office" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="website">
+          <Key>
+            <PropertyRef Name="websiteId" />
+          </Key>
+          <Property Name="websiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="officeId" Type="Int32" Nullable="false" />
+          <Property Name="websiteName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="websiteUri" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="websiteCal" Type="Int32" />
+          <Property Name="websiteOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="office" Relationship="DirectoryDataModel.FK_website_office" FromRole="website" ToRole="office" />
+        </EntityType>
+        <Association Name="FK_office_group">
+          <End Role="group" Type="DirectoryDataModel.group" Multiplicity="0..1" />
+          <End Role="office" Type="DirectoryDataModel.office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="groupId" />
+            </Principal>
+            <Dependent Role="office">
+              <PropertyRef Name="groupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hours_office">
+          <End Role="office" Type="DirectoryDataModel.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="hours" Type="DirectoryDataModel.hour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="hours">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_otherLocation_office">
+          <End Role="office" Type="DirectoryDataModel.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="otherLocation" Type="DirectoryDataModel.otherLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="otherLocation">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_social_office">
+          <End Role="office" Type="DirectoryDataModel.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="social" Type="DirectoryDataModel.social" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="social">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staff_office">
+          <End Role="office" Type="DirectoryDataModel.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="staff" Type="DirectoryDataModel.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_website_office">
+          <End Role="office" Type="DirectoryDataModel.office" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="website" Type="DirectoryDataModel.website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="website">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DirectoryDataModelStoreContainer" CdmEntityContainer="SDES_DirectoryEntities">
+          <EntitySetMapping Name="groups"><EntityTypeMapping TypeName="DirectoryDataModel.group"><MappingFragment StoreEntitySet="group">
+            <ScalarProperty Name="groupId" ColumnName="groupId" />
+            <ScalarProperty Name="groupName" ColumnName="groupName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="hours"><EntityTypeMapping TypeName="DirectoryDataModel.hour"><MappingFragment StoreEntitySet="hours">
+            <ScalarProperty Name="hoursId" ColumnName="hoursId" />
+            <ScalarProperty Name="officeId" ColumnName="officeId" />
+            <ScalarProperty Name="hoursDay" ColumnName="hoursDay" />
+            <ScalarProperty Name="hoursOpen" ColumnName="hoursOpen" />
+            <ScalarProperty Name="hoursClose" ColumnName="hoursClose" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="offices"><EntityTypeMapping TypeName="DirectoryDataModel.office"><MappingFragment StoreEntitySet="office">
+            <ScalarProperty Name="officeId" ColumnName="officeId" />
+            <ScalarProperty Name="groupId" ColumnName="groupId" />
+            <ScalarProperty Name="officeName" ColumnName="officeName" />
+            <ScalarProperty Name="officeAcronym" ColumnName="officeAcronym" />
+            <ScalarProperty Name="officePhone" ColumnName="officePhone" />
+            <ScalarProperty Name="officeFax" ColumnName="officeFax" />
+            <ScalarProperty Name="officeEmail" ColumnName="officeEmail" />
+            <ScalarProperty Name="officeBox" ColumnName="officeBox" />
+            <ScalarProperty Name="officeLocationBuilding" ColumnName="officeLocationBuilding" />
+            <ScalarProperty Name="officeLocationBuildingNum" ColumnName="officeLocationBuildingNum" />
+            <ScalarProperty Name="officeLocationRoomNum" ColumnName="officeLocationRoomNum" />
+            <ScalarProperty Name="offersPublicServices" ColumnName="offersPublicServices" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="otherLocations"><EntityTypeMapping TypeName="DirectoryDataModel.otherLocation"><MappingFragment StoreEntitySet="otherLocation">
+            <ScalarProperty Name="otherLocationId" ColumnName="otherLocationId" />
+            <ScalarProperty Name="officeId" ColumnName="officeId" />
+            <ScalarProperty Name="otherLocationName" ColumnName="otherLocationName" />
+            <ScalarProperty Name="otherLocationBuildingName" ColumnName="otherLocationBuildingName" />
+            <ScalarProperty Name="otherLocationBuildingNum" ColumnName="otherLocationBuildingNum" />
+            <ScalarProperty Name="otherLocationRoomNum" ColumnName="otherLocationRoomNum" />
+            <ScalarProperty Name="otherLocationPhone" ColumnName="otherLocationPhone" />
+            <ScalarProperty Name="otherLocationFax" ColumnName="otherLocationFax" />
+            <ScalarProperty Name="otherLocationEmail" ColumnName="otherLocationEmail" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="socials"><EntityTypeMapping TypeName="DirectoryDataModel.social"><MappingFragment StoreEntitySet="social">
+            <ScalarProperty Name="socialId" ColumnName="socialId" />
+            <ScalarProperty Name="officeId" ColumnName="officeId" />
+            <ScalarProperty Name="socialName" ColumnName="socialName" />
+            <ScalarProperty Name="socialUri" ColumnName="socialUri" />
+            <ScalarProperty Name="socialHandle" ColumnName="socialHandle" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="staffs"><EntityTypeMapping TypeName="DirectoryDataModel.staff"><MappingFragment StoreEntitySet="staff">
+            <ScalarProperty Name="staffId" ColumnName="staffId" />
+            <ScalarProperty Name="officeId" ColumnName="officeId" />
+            <ScalarProperty Name="staffName" ColumnName="staffName" />
+            <ScalarProperty Name="staffTitle" ColumnName="staffTitle" />
+            <ScalarProperty Name="staffOrder" ColumnName="staffOrder" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams"><EntityTypeMapping TypeName="DirectoryDataModel.sysdiagram"><MappingFragment StoreEntitySet="sysdiagrams">
+            <ScalarProperty Name="name" ColumnName="name" />
+            <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+            <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+            <ScalarProperty Name="version" ColumnName="version" />
+            <ScalarProperty Name="definition" ColumnName="definition" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="websites"><EntityTypeMapping TypeName="DirectoryDataModel.website"><MappingFragment StoreEntitySet="website">
+            <ScalarProperty Name="websiteId" ColumnName="websiteId" />
+            <ScalarProperty Name="officeId" ColumnName="officeId" />
+            <ScalarProperty Name="websiteName" ColumnName="websiteName" />
+            <ScalarProperty Name="websiteUri" ColumnName="websiteUri" />
+            <ScalarProperty Name="websiteCal" ColumnName="websiteCal" />
+            <ScalarProperty Name="websiteOrder" ColumnName="websiteOrder" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DirectoryModel">
+        <EntityTypeShape EntityType="DirectoryDataModel.group" Width="1.5" PointX="0.75" PointY="8.125" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DirectoryDataModel.hour" Width="1.5" PointX="5.25" PointY="1.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DirectoryDataModel.office" Width="1.5" PointX="3" PointY="6.75" Height="4.480205078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DirectoryDataModel.otherLocation" Width="1.5" PointX="5.25" PointY="4.5" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="DirectoryDataModel.social" Width="1.5" PointX="5.25" PointY="8.125" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DirectoryDataModel.staff" Width="1.5" PointX="5.25" PointY="11.125" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DirectoryDataModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="DirectoryDataModel.website" Width="1.5" PointX="5.25" PointY="14" Height="2.3648893229166674" IsExpanded="true" />
+        <AssociationConnector Association="DirectoryDataModel.FK_office_group" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.922841796875" />
+          <ConnectorPoint PointX="3" PointY="8.922841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="DirectoryDataModel.FK_hours_office" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="6.75" />
+          <ConnectorPoint PointX="3.75" PointY="2.7112939453125" />
+          <ConnectorPoint PointX="5.25" PointY="2.7112939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="DirectoryDataModel.FK_otherLocation_office" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.0958968098958328" />
+          <ConnectorPoint PointX="5.25" PointY="7.0958968098958328" />
+        </AssociationConnector>
+        <AssociationConnector Association="DirectoryDataModel.FK_social_office" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="9.2112939453125" />
+          <ConnectorPoint PointX="5.25" PointY="9.2112939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="DirectoryDataModel.FK_staff_office" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="11.230205078125" />
+          <ConnectorPoint PointX="3.75" PointY="12.263896984374998" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="12.263896984374998" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="12.263896984374998" />
+          <ConnectorPoint PointX="5.25" PointY="12.263896984374998" />
+        </AssociationConnector>
+        <AssociationConnector Association="DirectoryDataModel.FK_website_office" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.1562525" PointY="11.230205078125" />
+          <ConnectorPoint PointX="4.1562525" PointY="15.182444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="15.182444661458334" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

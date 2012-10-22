@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SDES___Office_Directory.Models.otherLocation>
+
+@{
+    ViewBag.Title = "Other Locations";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section links{
+    <ul class="content-main-links">
+        <li>@Html.ActionLink("Create New Other Location", "Create")</li>
+    </ul>
+}
+
+<table class="grid smaller">
+    <tr>
+        <th></th>
+        <th>
+            Office
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Email
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.otherLocationId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.otherLocationId })
+        </td>
+        <td>
+            @item.office.officeName
+        </td>
+        <td>
+            @item.otherLocationName
+        </td>
+        <td>
+            <a href="http://map.ucf.edu/?show=@item.otherLocationBuildingNum">@item.otherLocationBuildingName @item.otherLocationRoomNum</a>
+        </td>
+        <td>
+            @item.otherLocationPhone
+        </td>
+        <td>
+            <a href="mailto:@item.otherLocationEmail">@item.otherLocationEmail</a>
+        </td>
+    </tr>
+}
+
+</table>
+

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SDES___Office_Directory.Models.staff>
+
+@{
+    ViewBag.Title = "Staff Members";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="grid">
+    <tr>
+        <th></th>
+        <th>
+            Office
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Title
+        </th>
+    </tr>
+
+@foreach (var item in Model.OrderBy(x => x.staffOrder)) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.staffId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.staffId })
+        </td>
+        <td>
+            @item.office.officeName
+        </td>
+        <td>
+            @item.staffName
+        </td>
+        <td>
+            @item.staffTitle
+        </td>
+    </tr>
+}
+
+</table>
+

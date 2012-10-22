@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SDES___Office_Directory.Models.website>
+
+@{
+    ViewBag.Title = "Websites";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section links{
+    <ul class="content-main-links">
+        <li>@Html.ActionLink("Create New Site", "Create")</li>
+    </ul>
+}
+
+<table class="grid smaller">
+    <tr>
+        <th></th>
+        <th>
+            Office
+        </th>
+        <th>
+            Site Name
+        </th>
+        <th>
+            URI
+        </th>
+        <th>
+            Calendar
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.websiteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.websiteId })
+        </td>
+        <td>
+            @item.office.officeName
+        </td>
+        <td>
+            @item.websiteName
+        </td>
+        <td>
+            <a href="@item.websiteUri">@item.websiteUri</a>
+        </td>
+        <td>
+            <a href="http://events.ucf.edu/?calendar_id=@item.websiteCal&upcoming=upcoming">@item.websiteCal</a>
+        </td>
+    </tr>
+}
+
+</table>
+

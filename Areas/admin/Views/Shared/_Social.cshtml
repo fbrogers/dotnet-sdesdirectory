@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SDES___Office_Directory.Models.social>
+
+<h3>Social Networks</h3>
+<table class="grid">
+    <tr>
+        <th>
+            <a href="@Url.Action("Create", "social", new { id = ViewBag.Office })">
+                <img src="https://assets.sdes.ucf.edu/images/icons/fff_add.png" alt="icon" class="clean" />
+            </a>
+        </th>
+        <th>
+            Network
+        </th>
+        <th>
+            Handle
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "social", new { id=item.socialId }, null) |
+            @Html.ActionLink("Delete", "Delete", "social", new { id = item.socialId }, null)
+        </td>
+        <td>
+            <a href="@item.socialUri">@item.socialName</a>
+        </td>
+        <td>
+            @item.socialHandle
+        </td>
+    </tr>
+}
+
+</table>
+
