@@ -40,6 +40,9 @@
             <div id="title">
                 @Html.ActionLink("SDES Directory", "Index", "pages")
             </div>
+            <div id="subtitle">
+                <a href="http://www.sdes.ucf.edu/">Student Development and Enrollment Services</a>
+            </div>
         </div>
     </div>
     <!-- /HEADER --> 
@@ -49,7 +52,7 @@
         <ul id="nav-under">
             <li>@Html.ActionLink("Home", "Index", "pages")</li>
             <li>@Html.ActionLink("Directory Listing", "Directory", "pages")</li>
-            <li>@Html.ActionLink("Report an Error", "Report", "pages")</li>
+            <li>@Html.ActionLink("Report a Change", "Report", "pages")</li>
             <li>@Html.ActionLink("Contact", "Contact", "pages")</li>
         </ul>
     </div>
@@ -75,7 +78,19 @@
         </div>
         <div class="content-main-bottom"></div>
 		@RenderSection("below", false)
-		<!-- /CONTENT-MAIN -->
+        <!-- /CONTENT-MAIN -->
+        
+		<!-- CONTENT-END -->
+		<div class="content-main-top"></div>
+		<div class="content-main-body">
+			<div class="content-end">
+                <a href="http://get.adobe.com/reader/">
+                    <img src="http://assets.sdes.ucf.edu/images/content-end-pdf.jpg" class="icon" alt="icon" title="Get Adobe Reader" />
+                </a>
+			</div>
+		</div>
+		<div class="content-main-bottom"></div>
+        <!-- /CONTENT-END -->
     </div>
 	<!-- /CONTENT -->
 
@@ -107,7 +122,7 @@
                 <ul>
                     <li><a href="http://it.sdes.ucf.edu/">SDES Information Technology Home</a></li>
                     <li><a href="http://it.sdes.ucf.edu/about">About SDES IT</a></li>
-                    <li><a href="http://it.sdes.ucf.edu/about">The Teams of SDES IT</a></li>
+                    <li><a href="http://it.sdes.ucf.edu/teams">The Teams of SDES IT</a></li>
                     <li><a href="http://it.sdes.ucf.edu/services">IT Provided Services</a></li>
                     <li><a href="http://it.sdes.ucf.edu/training/">SDES IT Training</a></li>
                     <li><a href="http://it.sdes.ucf.edu/contact">Contact Us</a></li>

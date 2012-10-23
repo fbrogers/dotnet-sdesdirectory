@@ -14,7 +14,7 @@
 
 <div class="sidebar-right">
     <div class="event-title">Navigation</div>
-    <div class="events">
+    <div class="sidemenu">
         <ul class="side">
             <li>
                 <ul>
@@ -29,61 +29,118 @@
 </div>
 
 <div class="left">
-@foreach (var item in Model) {
-    
-    <h2 class="bullets office-title" id="@item.officeAcronym">@item.officeName</h2>
-    
-    <h3>Basic Information</h3>
     <p>
-        Acronym: @item.officeAcronym.ToUpper()<br />
-        @item.staffs.First().staffTitle: @item.staffs.First().staffName<br />
-        Phone: @item.officePhone<br />
-        Fax: @item.officeFax<br />
-        Email: <a href="mailto:@item.officeEmail">@item.officeEmail</a><br />
-        Location: <a href="http://map.ucf.edu/?show=@item.officeLocationBuildingNum">@item.officeLocationBuilding @item.officeLocationRoomNum</a><br />
-        P.O. Box: @item.officeBox<br />
-        Functional Group: @item.group.groupName
+        Listed below is a print-out of all of the current, live data in the Directory database. This information is being fed
+        directly to other sources, including UCF Mobile, sites using the SDES IT Template, and the main SDES website.
+    </p>
+    <p>
+        If you notice data that appears to be out-of-date, incorrect, or misspelled, or you would like to formally request
+        certain information be updated, please let us know via the @Html.ActionLink("Report a Change", "Report") form.
     </p>
     
-    <h3>Hours of Operation</h3>
-    <ul>
-        @foreach(var day in item.hours)
+    <div class="hr"></div>
+    
+    @foreach (var item in Model.OrderBy(x => x.officeName)) {
+    
+    <h2 class="office-title bullets" id="@item.officeAcronym">@item.officeName</h2>
+    
+    <table class="grid smaller directory">
+        <tr>
+            <th scope="col" colspan="2">Basic Information</th>
+        </tr>
+        <tr>
+            <td>Acronym</td>
+            <td>@item.officeAcronym.ToUpper()</td>
+        </tr>
+        <tr>
+            <td>@item.staffs.First().staffTitle</td>
+            <td>@item.staffs.First().staffName</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>@item.officePhone</td>
+        </tr>
+        <tr>
+            <td>Fax</td>
+            <td>@item.officeFax</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><a href="mailto:@item.officeEmail">@item.officeEmail</a></td>
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td><a href="http://map.ucf.edu/?show=@item.officeLocationBuildingNum" class="external">@item.officeLocationBuilding @item.officeLocationRoomNum</a></td>
+        </tr>
+        <tr>
+            <td>P.O. Box</td>
+            <td>@(item.officeBox.HasValue ? item.officeBox.ToString() : "None")</td>
+        </tr>
+        <tr>
+            <td>Functional Group</td>
+            <td>@item.group.groupName</td>
+        </tr>
+    </table>
+    
+    <div class="hr-clear"><br /></div>
+    
+    <table class="grid smaller directory">
+        <tr>
+            <th scope="col" colspan="2">Hours of Operation</th>
+        </tr>
+        @foreach(var day in item.hours.OrderBy(x => x.hoursDay))
         {
-            if (day.hoursOpen.ToString() == string.Empty || day.hoursClose.ToString() == string.Empty)
+            <tr>
+            @if (day.hoursOpen.ToString() == string.Empty || day.hoursClose.ToString() == string.Empty)
             {
-                <li>@Init.ConvertDaytoText(day.hoursDay): Closed</li>
+                <td>@Init.ConvertDaytoText(day.hoursDay)</td>
+                <td>Closed</td>
             }
             else
             {
-                <li>
-                    @Init.ConvertDaytoText(day.hoursDay): 
+                <td>@Init.ConvertDaytoText(day.hoursDay)</td>
+                <td>
                     @DateTime.ParseExact(day.hoursOpen.ToString(), "HH:mm:ss", null).ToString("h:mm tt") &ndash;
                     @DateTime.ParseExact(day.hoursClose.ToString(), "HH:mm:ss", null).ToString("h:mm tt")
-                </li>
+                </td>
             }
-
+            </tr>
         }
-    </ul>
+    </table>
     
-    <h3>Public Websites</h3>
-    <ul>
-        @foreach(var site in item.websites)
+    <div class="hr-clear"><br /></div>
+    
+    <table class="grid smaller directory">        
+        <tr>
+            <th scope="col" colspan="2">Public Websites</th>
+        </tr>
+        @foreach(var site in item.websites.OrderBy(x => x.websiteOrder))
         {
-            <li><a href="@site.websiteUri" class="external">@site.websiteName</a></li>
+            <tr>
+                <td>@site.websiteName</td>
+                <td><a href="@site.websiteUri" class="external">@site.websiteUri</a></td>
+            </tr>
         }
-    </ul>
+    </table>
+    <div class="hr-clear"><br /></div>
     
     if (item.socials.Any())
     {
-    <h3>Social Networking Presences</h3>
-    <ul>
-        @foreach(var network in item.socials)
-        {
-            <li><a href="@network.socialUri" class="external">@network.socialName</a></li>
-        }
-    </ul>
+        <table class="grid smaller directory">
+            <tr>
+                <th scope="col" colspan="2">Social Networking Presences</th>
+            </tr>
+            @foreach (var network in item.socials.OrderBy(x => x.socialName))
+            {
+                <tr>
+                    <td>@network.socialName</td>
+                    <td><a href="@network.socialUri" class="external">[Link to Social Network]</a></td>
+                </tr>
+            }
+        </table>
+        <div class="hr-clear"><br /></div>
     }
-    
-    <div class="hr"></div>
+
+    <div class="hr-blank"></div>
 }
 </div>

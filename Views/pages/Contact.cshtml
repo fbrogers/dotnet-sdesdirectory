@@ -1,0 +1,21 @@
+﻿@model SDES___Office_Directory.Models.office
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="staff">
+    <img src="@Url.Content("~/Content/it.jpg")" alt="wires" title="SDES Information Technology" />
+    <div class="staff-content">
+        <h2>@Model.officeName</h2>
+        <h3>@Model.staffs.First().staffName, @Model.staffs.First().staffTitle</h3>
+        
+        <p>
+            Phone: @Model.officePhone<br />
+            Email: <a href="mailto:@Model.officeEmail">@Model.officeEmail</a><br />
+            Website: <a href="@Model.websites.First().websiteUri" class="external">@Model.websites.First().websiteUri</a><br />
+            Location: <a href="http://map.ucf.edu/?show=@Model.officeLocationBuildingNum" class="external">@Model.officeLocationBuilding @Model.officeLocationRoomNum</a>
+        </p>
+    </div>
+</div>

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using SDES___Office_Directory.Code;
 using SDES___Office_Directory.Models;
 
 namespace SDES___Office_Directory.Areas.admin.Controllers
 {
-    public class groupController : Controller
+    [Authorize(Roles = @"SDES\Web-SDES Directory Admin Access")]
+    public class groupController : AuthorizeBaseController
     {
         //
         // GET: /admin/group/

@@ -3,14 +3,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p class="larger">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi
-vitae est. Mauris placerat eleifend leo.</p>
+@section billboard
+{
+    <div id="slate_container"> 
+		<div id="slate"> 
+			<img src="@Url.Content("~/Content/billboard.jpg")" alt="billboard image" /> 
+		</div> 
+	</div>
+}
 
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
-mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
-wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
-ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent
-dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.
-Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+<p class="larger">
+    Welcome to the SDES Directory! This website displays a collection of information on each SDES department/office, in addition to providing
+    this data in a machine-readable format to the division's various websites and partners.
+</p>
+    
+<ul class="link-list bullets">
+    <li>@Html.ActionLink("View Directory Information", "Directory")</li>
+    <li>@Html.ActionLink("Report a Change to Directory Information", "Report")</li>
+</ul>

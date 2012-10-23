@@ -6,7 +6,7 @@ using SDES___Office_Directory.Models;
 
 namespace SDES___Office_Directory.Areas.admin.Controllers
 {
-    public class websiteController : Controller
+    public class websiteController : AuthorizeBaseController
     {
         //
         // GET: /admin/website/

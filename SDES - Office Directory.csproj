@@ -82,8 +82,10 @@
     <Compile Include="Areas\admin\Controllers\socialController.cs" />
     <Compile Include="Areas\admin\Controllers\staffController.cs" />
     <Compile Include="Areas\admin\Controllers\websiteController.cs" />
+    <Compile Include="Code\AuthorizeBase.cs" />
     <Compile Include="Code\FeedViewModel.cs" />
     <Compile Include="Code\Init.cs" />
+    <Compile Include="Code\ReportFormViewModel.cs" />
     <Compile Include="Controllers\feedController.cs" />
     <Compile Include="Controllers\pagesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -131,22 +133,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\billboard.jpg" />
+    <Content Include="Content\it.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
@@ -229,6 +219,7 @@
     <Content Include="Areas\admin\Views\otherLocation\Create.cshtml" />
     <Content Include="Areas\admin\Views\otherLocation\Edit.cshtml" />
     <Content Include="Areas\admin\Views\otherLocation\Delete.cshtml" />
+    <Content Include="Views\pages\Contact.cshtml" />
     <None Include="Models\DirectoryModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DirectoryModel.Context.cs</LastGenOutput>
@@ -249,6 +240,8 @@
     </Content>
     <Content Include="Views\feed\Index.cshtml" />
     <Content Include="Views\pages\Directory.cshtml" />
+    <Content Include="Views\pages\Report.cshtml" />
+    <Content Include="Views\pages\Thanks.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

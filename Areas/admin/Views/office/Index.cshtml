@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SDES___Office_Directory.Models.office>
 
 @{
-    ViewBag.Title = "Offices";
+    ViewBag.Title = "Offices ("+Model.Count()+")";
     Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -31,12 +31,24 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.officeId }) |
-            @Html.ActionLink("Edit", "Edit", new { id=item.officeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.officeId })
+            <a href="@Url.Action("Details", new { id=item.officeId })">
+                <img src="http://assets.sdes.ucf.edu/images/icons/fff_page_white_magnify.png" alt="icon" class="icon"/>
+            </a>
+            <a href="@Url.Action("Edit", new { id=item.officeId })">
+                <img src="http://assets.sdes.ucf.edu/images/icons/fff_page_white_edit.png" alt="icon" class="icon"/>
+            </a>
+            <a href="@Url.Action("Delete", new { id=item.officeId })">
+                <img src="http://assets.sdes.ucf.edu/images/icons/fff_delete.png" alt="icon" class="icon"/>
+            </a>
         </td>
-        <td>
-            @item.officeName (@item.officeAcronym.ToUpper())
+        <td>           
+            @if(item.officeName.Length > 40){
+                <strong>@item.officeName.Substring(0, 40)&hellip; (@item.officeAcronym.ToUpper())</strong>
+            }
+            else
+            {
+                <strong>@item.officeName (@item.officeAcronym.ToUpper())</strong>
+            }
         </td>
         <td>
             @item.officePhone

@@ -6,7 +6,7 @@ using SDES___Office_Directory.Models;
 
 namespace SDES___Office_Directory.Code
 {
-    public class Init
+    public static class Init
     {
         public static IEnumerable<SelectListItem> PopulateGroupsDropDownList(int? id = null)
         {
@@ -30,6 +30,19 @@ namespace SDES___Office_Directory.Code
                 Text = x.officeName,
                 Value = x.officeId.ToString(CultureInfo.InvariantCulture),
                 Selected = (x.officeId == id)
+            }).ToList();
+            return list;
+        }
+
+        public static IEnumerable<SelectListItem> PopulateOfficesDropDownListStatic(string id = null)
+        {
+            var db = new SDES_DirectoryEntities();
+            var groups = db.offices.OrderBy(x => x.officeName).ToList();
+            var list = groups.Select(x => new SelectListItem
+            {
+                Text = x.officeName,
+                Value = x.officeName,
+                Selected = (x.officeName == id)
             }).ToList();
             return list;
         }

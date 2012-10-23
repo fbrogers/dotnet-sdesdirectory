@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using SDES___Office_Directory.Code;
 
 namespace SDES___Office_Directory.Areas.admin.Controllers
 {
-    public class pagesController : Controller
+    public class pagesController : AuthorizeBaseController
     {
         //
         // GET: /admin/pages/

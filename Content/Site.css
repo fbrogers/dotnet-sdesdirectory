@@ -2,6 +2,27 @@
     letter-spacing: -1px;
 }
 
+.editor-field textarea {
+    width: 500px;
+    height: 100px;
+}
+
+table.directory tr td:first-child{
+    width: 200px;
+    font-weight: bold;
+}
+
+.sidemenu {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.sidemenu li:hover, .content-main .sidemenu li a, .content-main .sidemenu li a:hover {
+    background: inherit;
+    color: inherit;
+}
+
+
 /* Styles for validation helpers
 -----------------------------------------------------------*/
 .field-validation-error

@@ -1,10 +1,11 @@
 ﻿using System.Data;
 using System.Web.Mvc;
+using SDES___Office_Directory.Code;
 using SDES___Office_Directory.Models;
 
 namespace SDES___Office_Directory.Areas.admin.Controllers
 {
-    public class socialController : Controller
+    public class socialController : AuthorizeBaseController
     {
         public ActionResult Index()
         {
