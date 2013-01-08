@@ -21,7 +21,6 @@ namespace SDES___Office_Directory.Code
         public string email { get; set; }
         public int? postOfficeBox { get; set; }
         public bool offersPublicServices { get; set; }
-        public bool isDept { get; set; }
         public string functionalGroup { get; set; }
 
         public JsonLocation location;

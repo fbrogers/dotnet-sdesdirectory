@@ -72,7 +72,6 @@
           <Property Name="officeLocationBuildingNum" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="officeLocationRoomNum" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="offersPublicServices" Type="bit" Nullable="false" />
-          <Property Name="isDept" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="otherLocation">
           <Key>
@@ -290,7 +289,6 @@
           <NavigationProperty Name="socials" Relationship="DirectoryDataModel.FK_social_office" FromRole="office" ToRole="social" />
           <NavigationProperty Name="staffs" Relationship="DirectoryDataModel.FK_staff_office" FromRole="office" ToRole="staff" />
           <NavigationProperty Name="websites" Relationship="DirectoryDataModel.FK_website_office" FromRole="office" ToRole="website" />
-          <Property Type="Boolean" Name="isDept" Nullable="false" />
         </EntityType>
         <EntityType Name="otherLocation">
           <Key>
@@ -451,8 +449,7 @@
             <ScalarProperty Name="hoursClose" ColumnName="hoursClose" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="offices"><EntityTypeMapping TypeName="DirectoryDataModel.office"><MappingFragment StoreEntitySet="office">
-            <ScalarProperty Name="isDept" ColumnName="isDept" />
-                <ScalarProperty Name="officeId" ColumnName="officeId" />
+            <ScalarProperty Name="officeId" ColumnName="officeId" />
             <ScalarProperty Name="groupId" ColumnName="groupId" />
             <ScalarProperty Name="officeName" ColumnName="officeName" />
             <ScalarProperty Name="officeAcronym" ColumnName="officeAcronym" />

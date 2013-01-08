@@ -64,10 +64,6 @@
             <th scope="row">Public Services?</th>
             <td>@Model.offersPublicServices</td>
         </tr>
-        <tr>
-            <th scope="row">Department?</th>
-            <td>@Model.isDept</td>
-        </tr>
     </table>
     
     <div class="hr-clear"></div>

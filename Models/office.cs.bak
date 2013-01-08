@@ -35,7 +35,6 @@ namespace SDES___Office_Directory.Models
         public string officeLocationBuildingNum { get; set; }
         public string officeLocationRoomNum { get; set; }
         public bool offersPublicServices { get; set; }
-        public bool isDept { get; set; }
     
         public virtual group group { get; set; }
         public virtual ICollection<hour> hours { get; set; }

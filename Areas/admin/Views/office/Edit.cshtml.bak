@@ -107,14 +107,6 @@
                 @Html.EditorFor(model => model.offersPublicServices)
                 @Html.ValidationMessageFor(model => model.offersPublicServices)
             </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.isDept)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.isDept)
-                @Html.ValidationMessageFor(model => model.isDept)
-            </div>
         </div>
     </fieldset>
     <div class="submitbox">

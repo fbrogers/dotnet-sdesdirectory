@@ -6,7 +6,6 @@ using SDES___Office_Directory.Models;
 
 namespace SDES___Office_Directory.Controllers
 {
-    [OutputCache(Duration = 21600, VaryByParam = "none")]
     public class feedController : Controller
     {
         //
@@ -38,7 +37,6 @@ namespace SDES___Office_Directory.Controllers
                     },
                     postOfficeBox = office.officeBox,
                     offersPublicServices = office.offersPublicServices,
-                    isDept = office.isDept,
                     functionalGroup = office.group.groupName
                 };
 
